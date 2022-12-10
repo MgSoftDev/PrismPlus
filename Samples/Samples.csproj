@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MgSoftDev.FuncResult" Version="1.8.0" />
+      <PackageReference Include="Prism.Core" Version="8.1.97" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\MgSoftDev.PrismPlus\MgSoftDev.PrismPlus.csproj" />
+    </ItemGroup>
+
+</Project>

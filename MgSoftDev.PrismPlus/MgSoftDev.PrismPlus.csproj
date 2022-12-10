@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TargetFrameworks>net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <LangVersion>11</LangVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>PrismPlus</Title>
+        <Authors>MgSoftDev</Authors>
+        <Description>Extension for Prism Library that extend DelegateCommands types</Description>
+        <Copyright>MgSoftDev</Copyright>
+        
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Prism.Core" Version="8.1.97" />
+    </ItemGroup>
+
+</Project>

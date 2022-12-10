@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgSoftDev.PrismPlus", "MgSoftDev.PrismPlus\MgSoftDev.PrismPlus.csproj", "{C37E7BB1-D76B-4C91-AB7D-D390C20DF2F9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "Samples\Samples.csproj", "{7A29058C-493C-4096-9B4A-BC6C449217C7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C37E7BB1-D76B-4C91-AB7D-D390C20DF2F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C37E7BB1-D76B-4C91-AB7D-D390C20DF2F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C37E7BB1-D76B-4C91-AB7D-D390C20DF2F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C37E7BB1-D76B-4C91-AB7D-D390C20DF2F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

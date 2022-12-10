@@ -9,6 +9,8 @@
         <Authors>MgSoftDev</Authors>
         <Description>Extension for Prism Library that extend DelegateCommands types</Description>
         <Copyright>MgSoftDev</Copyright>
+        <PackageProjectUrl>https://github.com/MgSoftDev/PrismPlus</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/MgSoftDev/PrismPlus</RepositoryUrl>
         
     </PropertyGroup>
 

@@ -1,25 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <ImplicitUsings>enable</ImplicitUsings>
         <TargetFrameworks>net7.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
         <LangVersion>11</LangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>PrismPlus</Title>
+        <Title>MgSoftDev.PrismPlus.Returning</Title>
         <Authors>MgSoftDev</Authors>
-        <Description>Extension for Prism Library that extend DelegateCommands types</Description>
+        <Description>Extension for Prism Library that extend DelegateCommands types implement Returning</Description>
         <Copyright>MgSoftDev</Copyright>
         <PackageProjectUrl>https://github.com/MgSoftDev/PrismPlus</PackageProjectUrl>
         <RepositoryUrl>https://github.com/MgSoftDev/PrismPlus</RepositoryUrl>
         <Version>1.0.2</Version>
         <AssemblyVersion>1.0.2</AssemblyVersion>
         <FileVersion>1.0.2</FileVersion>
-        
     </PropertyGroup>
-
     <ItemGroup>
-      <PackageReference Include="Prism.Core" Version="8.1.97" />
+        <PackageReference Include="MgSoftDev.Returning" Version="1.0.9" />
+        <PackageReference Include="Prism.Core" Version="8.1.97" />
     </ItemGroup>
-
-
 </Project>

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
-using MgSoftDev.FuncResult;
 using MgSoftDev.PrismPlus.Commands;
+using MgSoftDev.PrismPlus.Returning.Commands;
+using MgSoftDev.ReturningCore;
 using Prism.Mvvm;
 
 namespace Samples;
@@ -34,19 +35,23 @@ public class AsyncCommandViewModel : BindableBase
         get=>_Wait;
         set=>SetProperty(ref _Wait, value);
     }
-    AsyncDelegateCommand _SimpleCommand;
-    public AsyncDelegateCommand SimpleCommand => _SimpleCommand ??= new AsyncDelegateCommand( async ()=>
+    ReturningCommand _SimpleCommand;
+    public ReturningCommand SimpleCommand=> _SimpleCommand ??= new ReturningCommand(  ()=>
     {
         Wait = true;
-       await  Returning.TryTask(async ()=>
-        {
-            Msg = "Start" + DateTime.Now.Ticks;
-            await Task.Delay(5000);
-            Msg = DateTime.Now.ToString();
-        },true);
+        Msg  = "Start" + DateTime.Now.Ticks;
+        Task.Delay(5000).Wait();
+        Msg = DateTime.Now.ToString();
 
-       Wait = false;
-    });
+        throw new Exception("MY CUSTOM ERROR");
+       
+       
+        Wait = false;
+
+        return Returning.Success();
+    })
+                                                .SaveLog("Error en la funcion XXXXX")
+                                                .EndAction(r=>Msg+=r.ErrorInfo?.ErrorMessage);
     
     
     AsyncDelegateCommand<string> _SimpleParameterCommand;
@@ -56,5 +61,17 @@ public class AsyncCommandViewModel : BindableBase
         await Task.Delay(5000);
         Msg = DateTime.Now.ToString();
     });
+
+    private AsyncDelegateCommand _commandPropertyCommand;
+
+    public AsyncDelegateCommand commandPropertyCommand=>
+        _commandPropertyCommand ??= new AsyncDelegateCommand(async ()=>
+            {
+
+
+
+            }, ()=>!Wait).ObservesProperty(()=>Wait)
+                         .StartAction(()=>Wait = true)
+                         .EndAction(()=>Wait = false);
 }
 

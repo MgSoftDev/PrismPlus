@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgSoftDev.PrismPlus", "MgSo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samples", "Samples\Samples.csproj", "{7A29058C-493C-4096-9B4A-BC6C449217C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MgSoftDev.PrismPlus.Returning", "MgSoftDev.PrismPlus.Returning\MgSoftDev.PrismPlus.Returning.csproj", "{6931EA18-4E1C-42FD-88D1-58A6A6B2FD88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A29058C-493C-4096-9B4A-BC6C449217C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6931EA18-4E1C-42FD-88D1-58A6A6B2FD88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6931EA18-4E1C-42FD-88D1-58A6A6B2FD88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6931EA18-4E1C-42FD-88D1-58A6A6B2FD88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6931EA18-4E1C-42FD-88D1-58A6A6B2FD88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

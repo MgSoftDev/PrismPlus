@@ -9,6 +9,10 @@ public class AsyncDelegateCommand : DelegateCommandBase
 {
     Func<Task> _executeMethod;
     Func<bool> _canExecuteMethod;
+    Action     _StartAction;
+    Action     _EndAction;
+    Func<Task> _StartActionAsync;
+    Func<Task> _EndActionAsync;
 
     /// <summary>
     /// Creates a new instance of <see cref="AsyncDelegateCommand"/> with the <see cref="Action"/> to invoke on execution.
@@ -26,15 +30,76 @@ public class AsyncDelegateCommand : DelegateCommandBase
     {
         if (executeMethod == null || canExecuteMethod == null) throw new ArgumentNullException(nameof(executeMethod), "AsyncDelegateCommand Delegates Cannot Be Null");
 
-        _executeMethod = executeMethod;
+        _executeMethod    = executeMethod;
         _canExecuteMethod = canExecuteMethod;
     }
 
+    
+    /// <summary>
+    /// Create action to be executed before the command is executed
+    /// </summary>
+    /// <param name="startAction"></param>
+    /// <returns></returns>
+    public AsyncDelegateCommand StartAction(Action startAction)
+    {
+        _StartAction = startAction;
+        return this;
+    }
+    /// <summary>
+    /// Create action to be executed after the command has completed
+    /// </summary>
+    /// <param name="endAction"></param>
+    /// <returns></returns>
+    public AsyncDelegateCommand EndAction(Action endAction)
+    {
+        _EndAction = endAction;
+        return this;
+    }
+    /// <summary>
+    /// Create action to be executed before the command is executed
+    /// </summary>
+    /// <param name="startActionAsync"></param>
+    /// <returns></returns>
+    public AsyncDelegateCommand StartActionAsync(Func<Task> startActionAsync)
+    {
+        _StartActionAsync = startActionAsync;
+        return this;
+    }
+    /// <summary>
+    /// Create action to be executed after the command has completed
+    /// </summary>
+    /// <param name="endActionAsync"></param>
+    /// <returns></returns>
+    public AsyncDelegateCommand EndActionAsync(Func<Task> endActionAsync)
+    {
+        _EndActionAsync = endActionAsync;
+        return this;
+    }
+    /// <summary>
+    /// Create action to be executed before the command is executed
+    /// </summary>
+    /// <param name="startActionAsync"></param>
+    /// <returns></returns>
+    public AsyncDelegateCommand StartAction(Func<bool> canExecuteAction)
+    {
+        _canExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
+        return this;
+    }
+    
     ///<summary>
     /// Executes the command.
     ///</summary>
     public async void Execute()
     {
+        try
+        {
+            _StartAction?.Invoke();
+            if (_StartActionAsync != null) await _StartActionAsync.Invoke();
+        }
+        catch ( Exception )
+        {
+        }
+        
         IsActive = true;
         RaiseCanExecuteChanged();
 
@@ -48,6 +113,14 @@ public class AsyncDelegateCommand : DelegateCommandBase
 
         IsActive = false;
         RaiseCanExecuteChanged();
+        try
+        {
+            _EndAction?.Invoke();
+            if (_EndActionAsync != null) await _EndActionAsync.Invoke();
+        }
+        catch ( Exception )
+        {
+        }
     }
 
     /// <summary>
@@ -125,7 +198,11 @@ public class AsyncDelegateCommand : DelegateCommandBase
 public class AsyncDelegateCommand<T> : DelegateCommandBase
  {
         readonly Func<T, Task> _executeMethod;
-        Func<T, bool> _canExecuteMethod;
+        Func<T, bool>          _canExecuteMethod;
+        Action<T>                 _StartAction;
+        Action<T>                 _EndAction;
+        Func<T,Task>             _StartActionAsync;
+        Func<T,Task>             _EndActionAsync;
 
         /// <summary>
         /// Initializes a new instance of <see cref="AsyncDelegateCommand{T}"/>.
@@ -136,6 +213,7 @@ public class AsyncDelegateCommand<T> : DelegateCommandBase
             : this(executeMethod, (o) => true)
         {
         }
+
 
         /// <summary>
         /// Initializes a new instance of <see cref="AsyncDelegateCommand{T}"/>.
@@ -165,12 +243,77 @@ public class AsyncDelegateCommand<T> : DelegateCommandBase
             _canExecuteMethod = canExecuteMethod;
         }
 
+        
+        
+        /// <summary>
+        /// Create action to be executed before the command is executed
+        /// </summary>
+        /// <param name="startAction"></param>
+        /// <returns></returns>
+        public AsyncDelegateCommand<T> StartAction(Action<T> startAction)
+        {
+            _StartAction = startAction;
+            return this;
+        }
+        /// <summary>
+        /// Create action to be executed after the command has completed
+        /// </summary>
+        /// <param name="endAction"></param>
+        /// <returns></returns>
+        public AsyncDelegateCommand<T> EndAction(Action<T> endAction)
+        {
+            _EndAction = endAction;
+            return this;
+        }
+        /// <summary>
+        /// Create action to be executed before the command is executed
+        /// </summary>
+        /// <param name="startActionAsync"></param>
+        /// <returns></returns>
+        public AsyncDelegateCommand<T> StartActionAsync(Func<T,Task> startActionAsync)
+        {
+            _StartActionAsync = startActionAsync;
+            return this;
+        }
+        /// <summary>
+        /// Create action to be executed after the command has completed
+        /// </summary>
+        /// <param name="endActionAsync"></param>
+        /// <returns></returns>
+        public AsyncDelegateCommand<T> EndActionAsync(Func<T,Task> endActionAsync)
+        {
+            _EndActionAsync = endActionAsync;
+            return this;
+        }
+        
+        
+        /// <summary>
+        /// Create action to be executed before the command is executed
+        /// </summary>
+        /// <param name="startActionAsync"></param>
+        /// <returns></returns>
+        public AsyncDelegateCommand<T> StartAction(Func<T,bool> canExecuteAction)
+        {
+            _canExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
+            return this;
+        }
+        
+        
+
         ///<summary>
         ///Executes the command and invokes the <see cref="Action{T}"/> provided during construction.
         ///</summary>
         ///<param name="parameter">Data used by the command.</param>
         public async void Execute(T parameter)
         {
+            try
+            {
+                _StartAction?.Invoke(parameter);
+                if (_StartActionAsync != null) await _StartActionAsync.Invoke(parameter);
+            }
+            catch ( Exception )
+            {
+            }
             IsActive = true;
             RaiseCanExecuteChanged();
             try
@@ -182,6 +325,14 @@ public class AsyncDelegateCommand<T> : DelegateCommandBase
             }
             IsActive = false;
             RaiseCanExecuteChanged();
+            try
+            {
+                _EndAction?.Invoke(parameter);
+                if (_EndActionAsync != null) await _EndActionAsync.Invoke(parameter);
+            }
+            catch ( Exception )
+            {
+            }
         }
 
         ///<summary>

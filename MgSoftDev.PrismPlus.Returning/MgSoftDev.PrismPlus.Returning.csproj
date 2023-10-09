@@ -11,9 +11,9 @@
         <Copyright>MgSoftDev</Copyright>
         <PackageProjectUrl>https://github.com/MgSoftDev/PrismPlus</PackageProjectUrl>
         <RepositoryUrl>https://github.com/MgSoftDev/PrismPlus</RepositoryUrl>
-        <Version>1.0.2</Version>
-        <AssemblyVersion>1.0.2</AssemblyVersion>
-        <FileVersion>1.0.2</FileVersion>
+        <Version>1.0.3</Version>
+        <AssemblyVersion>1.0.3</AssemblyVersion>
+        <FileVersion>1.0.3</FileVersion>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="MgSoftDev.Returning" Version="1.0.9" />

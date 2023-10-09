@@ -17,4 +17,16 @@ public static class DelegateCommandExtension
         if (res)command.Execute(parameter);
         return res;
     }
+    public static bool CanAndExecute(this ReturningCommand command)
+    {
+        var res = command.CanExecute();
+        if (res)command.Execute();
+        return res;
+    }
+    public static bool CanAndExecute<T>(this ReturningCommand<T> command, T parameter)
+    {
+        var res = command.CanExecute(parameter);
+        if (res)command.Execute(parameter);
+        return res;
+    }
 }

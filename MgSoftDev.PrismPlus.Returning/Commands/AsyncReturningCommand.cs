@@ -16,6 +16,8 @@ public class AsyncReturningCommand : DelegateCommandBase
     string                              _ErrorCode;
     bool                                _SaveLog;
     ReturningEnums.LogLevel             _LogLevel;
+    
+    bool _ConfigureAwait = false;
 
     /// <summary>
     /// Creates a new instance of <see cref="AsyncReturningCommand"/> with the <see cref="Action"/> to invoke on execution.
@@ -90,6 +92,18 @@ public class AsyncReturningCommand : DelegateCommandBase
 
         return this;
     }
+    /// <summary>
+    /// Configure await for the command execution 
+    /// </summary>
+    /// <param name="configureAwait"></param>
+    /// <returns></returns>
+    public AsyncReturningCommand ConfigureAwait(bool configureAwait =true)
+    {
+        _ConfigureAwait = configureAwait;
+
+        return this;
+    }
+    
     ///<summary>
     /// Executes the command.
     ///</summary>
@@ -106,7 +120,7 @@ public class AsyncReturningCommand : DelegateCommandBase
         IsActive = true;
         RaiseCanExecuteChanged();
 
-        var res = await ReturningCore.Returning.TryTask(async ()=>await _ExecuteMethod(),_SaveLog,_ErrorName,_ErrorCode);
+        var res = await ReturningCore.Returning.TryTask(async ()=>await _ExecuteMethod(),_SaveLog,_ErrorName,_ErrorCode).ConfigureAwait(_ConfigureAwait);
 
         IsActive = false;
         RaiseCanExecuteChanged();
@@ -201,6 +215,7 @@ public class AsyncReturningCommand< T > : DelegateCommandBase
     string                                          _ErrorCode;
     bool                                            _SaveLog;
     ReturningEnums.LogLevel                         _LogLevel;
+    bool _ConfigureAwait = false;
     /// <summary>
     /// Initializes a new instance of <see cref="AsyncReturningCommand"/>.
     /// </summary>
@@ -289,7 +304,19 @@ public class AsyncReturningCommand< T > : DelegateCommandBase
 
         return this;
     }
+/// <summary>
+/// Configure await for the command execution 
+/// </summary>
+/// <param name="configureAwait"></param>
+/// <returns></returns>
+    public AsyncReturningCommand<T> ConfigureAwait(bool configureAwait=true)
+    {
+        _ConfigureAwait = configureAwait;
 
+        return this;
+    }
+    
+    
     ///<summary>
     ///Executes the command and invokes the <see cref="Action{T}"/> provided during construction.
     ///</summary>
@@ -306,7 +333,7 @@ public class AsyncReturningCommand< T > : DelegateCommandBase
 
         IsActive = true;
         RaiseCanExecuteChanged();
-        var res = await ReturningCore.Returning.TryTask(async ()=>await _ExecuteMethod(parameter),_SaveLog,_ErrorName,_ErrorCode);
+        var res = await ReturningCore.Returning.TryTask(async ()=>await _ExecuteMethod(parameter),_SaveLog,_ErrorName,_ErrorCode).ConfigureAwait(_ConfigureAwait);
 
         IsActive = false;
         RaiseCanExecuteChanged();

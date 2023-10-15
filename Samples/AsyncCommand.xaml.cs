@@ -50,6 +50,7 @@ public class AsyncCommandViewModel : BindableBase
 
                 return Returning.Success();
             }).SaveLog("Error en la funcion XXXXX")
+              .StartAction(()=>Msg+="Start Execute")
               .EndAction(r=>Msg += r.ErrorInfo?.ErrorMessage);
 
 

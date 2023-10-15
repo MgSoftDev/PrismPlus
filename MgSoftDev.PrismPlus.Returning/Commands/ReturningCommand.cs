@@ -64,17 +64,7 @@ public class ReturningCommand : DelegateCommandBase
     }
 
 
-    /// <summary>
-    /// Create action to be executed before the command is executed
-    /// </summary>
-    /// <param name="startActionAsync"></param>
-    /// <returns></returns>
-    public ReturningCommand StartAction(Func<bool> canExecuteAction)
-    {
-        _CanExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
-
-        return this;
-    }
+   
 
     /// <summary>
     /// Add a log entry when the command is executed 
@@ -264,17 +254,6 @@ public class ReturningCommand< T > : DelegateCommandBase
     }
 
 
-    /// <summary>
-    /// Create action to be executed before the command is executed
-    /// </summary>
-    /// <param name="startActionAsync"></param>
-    /// <returns></returns>
-    public ReturningCommand<T> StartAction(Func<T, bool> canExecuteAction)
-    {
-        _CanExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
-
-        return this;
-    }
 
     /// <summary>
     /// Add a log entry when the command is executed 

@@ -58,17 +58,6 @@ public class AsyncDelegateCommand : DelegateCommandBase
         return this;
     }
 
-    /// <summary>
-    /// Create action to be executed before the command is executed
-    /// </summary>
-    /// <param name="startActionAsync"></param>
-    /// <returns></returns>
-    public AsyncDelegateCommand StartAction(Func<bool> canExecuteAction)
-    {
-        _canExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
-
-        return this;
-    }
 
     /// <summary>
     /// Configure await for the command execution 
@@ -259,17 +248,7 @@ public class AsyncDelegateCommand< T > : DelegateCommandBase
     }
 
 
-    /// <summary>
-    /// Create action to be executed before the command is executed
-    /// </summary>
-    /// <param name="startActionAsync"></param>
-    /// <returns></returns>
-    public AsyncDelegateCommand<T> StartAction(Func<T, bool> canExecuteAction)
-    {
-        _canExecuteMethod = canExecuteAction ?? throw new ArgumentNullException(nameof(canExecuteAction), "AsyncDelegateCommand Delegates Cannot Be Null");
-
-        return this;
-    }
+    
 
     /// <summary>
     /// Configure await for the command execution 

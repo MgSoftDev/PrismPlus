@@ -11,7 +11,7 @@ public class AsyncDelegateCommand : DelegateCommandBase
     Func<bool> _canExecuteMethod;
     Action     _StartAction;
     Action<Exception>     _EndAction;
-    bool       _ConfigureAwait = false;
+    bool       _ConfigureAwait = true;
 
     /// <summary>
     /// Creates a new instance of <see cref="AsyncDelegateCommand"/> with the <see cref="Action"/> to invoke on execution.
@@ -64,7 +64,7 @@ public class AsyncDelegateCommand : DelegateCommandBase
     /// </summary>
     /// <param name="configureAwait"></param>
     /// <returns></returns>
-    public AsyncDelegateCommand ConfigureAwait(bool configureAwait = true)
+    public AsyncDelegateCommand ConfigureAwait(bool configureAwait = false)
     {
         _ConfigureAwait = configureAwait;
 
@@ -186,7 +186,7 @@ public class AsyncDelegateCommand< T > : DelegateCommandBase
     Action<T>              _StartAction;
     Action<T,Exception>              _EndAction;
 
-    bool _ConfigureAwait = false;
+    bool _ConfigureAwait = true;
 
     /// <summary>
     /// Initializes a new instance of <see cref="AsyncDelegateCommand{T}"/>.
@@ -255,7 +255,7 @@ public class AsyncDelegateCommand< T > : DelegateCommandBase
     /// </summary>
     /// <param name="configureAwait"></param>
     /// <returns></returns>
-    public AsyncDelegateCommand<T> ConfigureAwait(bool configureAwait = true)
+    public AsyncDelegateCommand<T> ConfigureAwait(bool configureAwait = false)
     {
         _ConfigureAwait = configureAwait;
 

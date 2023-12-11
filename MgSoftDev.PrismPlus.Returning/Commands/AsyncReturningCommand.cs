@@ -17,7 +17,7 @@ public class AsyncReturningCommand : DelegateCommandBase
     bool                                _SaveLog;
     ReturningEnums.LogLevel             _LogLevel;
     
-    bool _ConfigureAwait = false;
+    bool _ConfigureAwait = true;
 
     /// <summary>
     /// Creates a new instance of <see cref="AsyncReturningCommand"/> with the <see cref="Action"/> to invoke on execution.
@@ -87,7 +87,7 @@ public class AsyncReturningCommand : DelegateCommandBase
     /// </summary>
     /// <param name="configureAwait"></param>
     /// <returns></returns>
-    public AsyncReturningCommand ConfigureAwait(bool configureAwait =true)
+    public AsyncReturningCommand ConfigureAwait(bool configureAwait =false)
     {
         _ConfigureAwait = configureAwait;
 
@@ -205,7 +205,7 @@ public class AsyncReturningCommand< T > : DelegateCommandBase
     string                                          _ErrorCode;
     bool                                            _SaveLog;
     ReturningEnums.LogLevel                         _LogLevel;
-    bool _ConfigureAwait = false;
+    bool _ConfigureAwait = true;
     /// <summary>
     /// Initializes a new instance of <see cref="AsyncReturningCommand"/>.
     /// </summary>
@@ -289,7 +289,7 @@ public class AsyncReturningCommand< T > : DelegateCommandBase
 /// </summary>
 /// <param name="configureAwait"></param>
 /// <returns></returns>
-    public AsyncReturningCommand<T> ConfigureAwait(bool configureAwait=true)
+    public AsyncReturningCommand<T> ConfigureAwait(bool configureAwait=false)
     {
         _ConfigureAwait = configureAwait;
 
